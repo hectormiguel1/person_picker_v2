@@ -86,14 +86,16 @@ class ClassComponent extends StatelessWidget {
                             StyleizedButton(
                                 color: Colors.green,
                                 onTap: addParticipant,
-                                text: 'Add Participant'),
+                                text: 'Participant',
+                                icon: Icons.add),
                             const SizedBox(
                               width: 10,
                             ),
                             StyleizedButton(
                                 color: Colors.red,
                                 onTap: () => {},
-                                text: 'Remove Participant'),
+                                text: 'Participant',
+                                icon: Icons.remove),
                             const SizedBox(width: 10),
                           ],
                         ),
@@ -106,7 +108,8 @@ class ClassComponent extends StatelessWidget {
                             StyleizedButton(
                                 color: Colors.blue,
                                 onTap: pickRandom,
-                                text: 'Pack at Random')
+                                text: 'Pack at Random',
+                                icon: Icons.shuffle)
                           ],
                         )
                       ],

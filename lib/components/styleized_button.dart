@@ -9,6 +9,7 @@ class StyleizedButton extends StatelessWidget {
   final double defaultElevation;
   final double hoverElevation;
   final List<MaterialState> interactions;
+  final IconData? icon;
 
   //Constructs a Stylized button with the passed properties.
   const StyleizedButton(
@@ -17,6 +18,7 @@ class StyleizedButton extends StatelessWidget {
       required this.text,
       this.defaultElevation = 0.0,
       this.hoverElevation = 10,
+      this.icon,
       this.interactions = const [
         MaterialState.hovered,
         MaterialState.pressed,
@@ -33,7 +35,18 @@ class StyleizedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ElevatedButton(
       onPressed: () => onTap.call(),
-      child: Text(text),
+      child: icon == null
+          ? Text(text)
+          : Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(icon),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(text)
+              ],
+            ),
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(color),
           shape: MaterialStateProperty.all(

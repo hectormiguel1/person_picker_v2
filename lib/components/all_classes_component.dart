@@ -74,14 +74,16 @@ class AllClasses extends StatelessWidget {
                         StyleizedButton(
                             color: Colors.green,
                             onTap: addClass,
-                            text: 'Add Class'),
+                            text: 'Class',
+                            icon: Icons.add),
                         const SizedBox(
                           width: 10,
                         ),
                         StyleizedButton(
                             color: Colors.red,
                             onTap: () => {},
-                            text: 'Remove class'),
+                            text: 'Class',
+                            icon: Icons.remove),
                       ])),
                   Flexible(
                     flex: 10,

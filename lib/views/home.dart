@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:person_picker_v2/components/all_classes_component.dart';
 import 'package:person_picker_v2/components/class_component.dart';
+import 'package:person_picker_v2/components/participant_view.dart';
 import 'package:person_picker_v2/components/styleized_button.dart';
 import 'package:person_picker_v2/constants/logger.dart';
 import 'package:person_picker_v2/controllers/app_controller.dart';
@@ -40,53 +41,22 @@ class Home extends StatelessWidget {
             child: ClassComponent(),
           ),
           Flexible(
-            flex: 5,
+            flex: 4,
             fit: FlexFit.tight,
             child: Column(
               children: [
-                Expanded(
-                  child: Get.isRegistered<ParticipantController>()
-                      ? Obx(
-                          () => Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                  'Participant Name: ${ParticipantController.to.name}'),
-                              Text(
-                                  'Participant Points: ${ParticipantController.to.points}'),
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  StyleizedButton(
-                                    color: Colors.green,
-                                    text: 'Increment Points',
-                                    onTap: () =>
-                                        ParticipantController.to.increment(),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  StyleizedButton(
-                                      color: Colors.red,
-                                      onTap: () =>
-                                          ParticipantController.to.decrement(),
-                                      text: 'Decrement Points'),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  StyleizedButton(
-                                      color: Colors.amber,
-                                      onTap: () =>
-                                          ParticipantController.to.reset(),
-                                      text: 'Reset Points')
-                                ],
-                              )
-                            ],
-                          ),
-                        )
-                      : Container(),
-                )
+                Flexible(
+                  flex: 2,
+                  fit: FlexFit.tight,
+                  child: ParticipantView(),
+                ),
+                Flexible(
+                    flex: 2,
+                    fit: FlexFit.tight,
+                    child: Container(
+                      child: Center(
+                          child: Text('Space for Groups, To Be Completed.')),
+                    ))
               ],
             ),
           )
