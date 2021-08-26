@@ -19,6 +19,22 @@ class Participant extends Serializable {
     return Participant(name: name, points: points);
   }
 
+  @override
+  bool operator ==(dynamic other) {
+    if (other.runtimeType != runtimeType ||
+        other.runtimeType != ReadOnlyParticipant) {
+      return false;
+    } else {
+      if (other.runtimeType == runtimeType) {
+        Participant o = other as Participant;
+        return o.name == name && o.points == points;
+      } else {
+        ReadOnlyParticipant o = other as ReadOnlyParticipant;
+        return o.name == name && o.points == points;
+      }
+    }
+  }
+
   ReadOnlyParticipant toReadOnly() => ReadOnlyParticipant(name, points);
 
   //Serialize
@@ -27,6 +43,10 @@ class Participant extends Serializable {
 
   @override
   Type get type => Participant;
+
+  @override
+  int get hashCode =>
+      name.runes.reduce((value, element) => value += element) + points;
 }
 
 class ReadOnlyParticipant {
