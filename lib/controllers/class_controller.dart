@@ -46,4 +46,27 @@ class ClassController extends GetxController {
 
     refresh();
   }
+
+  ///Called to assigns participants to groups at random. Notifies listeners.
+  void assignGroupsAtRandom(int numOfMembers) {
+    _selectedClass.update((value) => value?.assignToGroupsRandom(numOfMembers));
+    AppController.to.dispatchAppRefresh();
+    refresh();
+  }
+
+  ///Removes a participant from the provided group. Notified Listeners.
+  void removeGroupMember(int groupNumber, String participantUID) {
+    _selectedClass.update((value) => value!.groups[groupNumber].members
+        .removeWhere((member) => member.uid == participantUID));
+    AppController.to.dispatchAppRefresh();
+    refresh();
+  }
+
+  ///Adds a participant to the provided {groupNumber}. Notifies listeners.
+  void addGroupMember(int groupNumber, Participant newParticipant) {
+    _selectedClass.update(
+        (value) => value!.groups[groupNumber].addMember(newParticipant));
+    AppController.to.dispatchAppRefresh();
+    refresh();
+  }
 }

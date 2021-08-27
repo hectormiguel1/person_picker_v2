@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:person_picker_v2/backend/local_storage.dart';
 import 'package:person_picker_v2/controllers/app_controller.dart';
 import 'package:person_picker_v2/views/home.dart';
 
 void main() {
+  var fileStore = LocalStore();
   Get.put<AppController>(AppController());
   runApp(const MyApp());
 }
