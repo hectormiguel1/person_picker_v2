@@ -14,18 +14,6 @@ import 'package:person_picker_v2/models/participant.dart';
 import 'package:person_picker_v2/models/user.dart';
 
 class Home extends StatelessWidget {
-  final User _testUser = User(classes: [
-    Class(className: "Test Class", classParticipants: [
-      Participant(name: "Hector Ramirez", points: 1),
-      Participant(name: "Deaz Nunoo", points: 2)
-    ])
-  ]);
-
-  // ignore: use_key_in_widget_constructors
-  Home() {
-    Get.put<UserController>(UserController(_testUser));
-  }
-
   @override
   Widget build(BuildContext context) => Scaffold(body: Obx(() {
         logger.i('App has refreshed ${AppController.to.count} times');

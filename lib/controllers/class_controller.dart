@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:get/get.dart';
 import 'package:person_picker_v2/controllers/app_controller.dart';
 import 'package:person_picker_v2/controllers/participant_controller.dart';
+import 'package:person_picker_v2/controllers/store_controller.dart';
 import 'package:person_picker_v2/models/class.dart';
 import 'package:person_picker_v2/models/participant.dart';
 
@@ -68,5 +69,11 @@ class ClassController extends GetxController {
         (value) => value!.groups[groupNumber].addMember(newParticipant));
     AppController.to.dispatchAppRefresh();
     refresh();
+  }
+
+  @override
+  void refresh() {
+    StoreController.to.storage.save();
+    super.refresh();
   }
 }

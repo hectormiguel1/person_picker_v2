@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:person_picker_v2/controllers/store_controller.dart';
 import 'package:person_picker_v2/models/participant.dart';
 
 class ParticipantController extends GetxController {
@@ -20,15 +21,22 @@ class ParticipantController extends GetxController {
   int get points => _participant.value.points;
 
   /// Incremenets the current points of the participant by 1
-  void increment() =>
-      _participant.update((participant) => participant!.points++);
+  void increment() {
+    _participant.update((participant) => participant!.points++);
+    refresh();
+  }
 
   /// Lowers the current points of the participant by 1.
-  void decrement() =>
-      _participant.update((participant) => participant!.points--);
+  void decrement() {
+    _participant.update((val) => val!.points--);
+    refresh();
+  }
 
   ///Resets the current participants points.
-  void reset() => _participant.update((participant) => participant!.points = 0);
+  void reset() {
+    _participant.update((val) => val!.points = 0);
+    refresh();
+  }
 
   ///Updates the current participants name.
   void updateName(String newName) =>
@@ -37,5 +45,11 @@ class ParticipantController extends GetxController {
   void changeParticipant(Participant newParticipant) {
     _participant = Rx<Participant>(newParticipant);
     refresh();
+  }
+
+  @override
+  void refresh() {
+    StoreController.to.storage.save();
+    super.refresh();
   }
 }

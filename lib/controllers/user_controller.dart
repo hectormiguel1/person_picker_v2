@@ -3,7 +3,9 @@ import 'dart:collection';
 import 'package:get/get.dart';
 import 'package:person_picker_v2/controllers/app_controller.dart';
 import 'package:person_picker_v2/controllers/class_controller.dart';
+import 'package:person_picker_v2/controllers/store_controller.dart';
 import 'package:person_picker_v2/models/class.dart';
+import 'package:person_picker_v2/models/participant.dart';
 import 'package:person_picker_v2/models/user.dart';
 
 class UserController extends GetxController {
@@ -35,5 +37,10 @@ class UserController extends GetxController {
             .firstWhere((element) => element.uid == classUid)));
     AppController.to.dispatchAppRefresh();
     refresh();
+  }
+
+  @override
+  void refresh() {
+    StoreController.to.storage.save();
   }
 }
